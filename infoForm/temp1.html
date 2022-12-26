@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Link to the Bootstrap CSS file -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body style="background-image:url(bridge.jpg);">
+  <div class="container mt-2" style="font-size: 14px;
+  color: #000000;
+  letter-spacing: 0;
+  line-height: 25px;
+  font-family:MarkPro, Arial, Helvetica;">
+  <h1 class="text-center mb-lg-1" style="font-family: 'Amita'; font-size: 50px; color: #5d41e8;">Viaduct</h1>
+  <h3 class="text-center mb-2">Data Collection</h3>
+    <form class="col-4"style="padding: 25px;
+    background: #f8f9ee none repeat scroll 0 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+    margin-left:200px">
+      <div class="form-group">
+        <!-- Add a text field for the user's name -->
+        <label for="name" class="font-weight-bold">Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <!-- Add a text field for the user's email address -->
+        <label for="email" class="font-weight-bold">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <!-- Add a password field for the user's password -->
+        <label for="password" class="font-weight-bold">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+      </div>
+      <div class="form-group">
+        <!-- Add a select menu for the number of semesters -->
+        <label for="semesters" class="font-weight-bold">Number of semesters:</label>
+        <select class="form-control" id="semesters">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+      <h3>Skills</h3>
+      <!-- Add a list to display the skills -->
+      <ul id="skillList" class="list-unstyled"></ul>
+     
+      <!-- Add a form group to hold the new skill text field and the new skill level select menu -->
+      <div class="form-group d-flex align-items-center">
+        <!-- Add a text field for the user to enter a new skill -->
+        <input type="text" class="form-control mr-2" id="newSkill" placeholder="Enter a new skill">
+        <!-- Add a select menu for the proficiency level of the new skill -->
+        <select class="form-control mr-2" id="newSkillLevel">
+          <option value="8">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="8">9</option>
+          <option value="8">10</option>
+
+        </select>
+        <!-- Add a button to add the new skill to the list -->
+        <button type="button" class="btn btn-primary" onclick="addSkill()">Add Skill</button>
+      </div>
+      <!-- Add a submit button to submit the form -->
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+  </div>
+
+  <!-- Link to the Bootstrap JavaScript file -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.6/dist/umd/popper.min.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  <script>
+    // Get a reference to the skill list, the new skill text field, and the new skill level select menu
+    var skillList = document.getElementById("skillList");
+    var newSkill = document.getElementById("newSkill");
+    var newSkillLevel = document.getElementById("newSkillLevel");
+
+    // Define a function to add a new skill to the list
+    function addSkill() {
+      // Get the value of the new skill text field and the new skill level select menu
+      var skill = newSkill.value;
+      var skillLevel = newSkillLevel.value;
+      // Make sure the skill and skill level are not empty
+      if (skill.trim() === "" || skillLevel.trim() === "") {
+        return;
+      }
+
+      // Create a new list item to hold the skill and proficiency level
+      var li = document.createElement("li");
+      li.classList.add("d-flex", "align-items-center", "mb-2");
+      // Create a paragraph element to hold the skill
+      var p = document.createElement("p");
+      p.textContent = skill;
+      p.classList.add("mr-2");
+
+      var p1= document.createElement("p");
+      p1.textContent = skillLevel;
+      p1.classList.add("mr-4");
+
+
+      // Create a select menu element to hold the proficiency level
+      // var select = document.createElement("select");
+      // select.value = skillLevel;
+      // select.classList.add("form-control", "mr-2");
+      // Add the options to the select menu
+      // var option1 = document.createElement("option");
+      // option1.value = "0";
+      // option1.textContent = "0";
+      // select.appendChild(option1);
+      // var option2 = document.createElement("option");
+      // option2.value = "1";
+      // option2.textContent = "1";
+      // select.appendChild(option2);
+      // var option3 = document.createElement("option");
+      // option3.value = "2";
+      // option3.textContent = "2";
+      // select.appendChild(option3);
+
+      // var option4 = document.createElement("option");
+      // option4.value = "3";
+      // option4.textContent = "3";
+      // select.appendChild(option4);
+
+      // var option5 = document.createElement("option");
+      // option5.value = "4";
+      // option5.textContent = "4";
+      // select.appendChild(option5);
+
+      // var option6 = document.createElement("option");
+      // option6.value = "5";
+      // option6.textContent = "5";
+      // select.appendChild(option6);
+
+      // var option7 = document.createElement("option");
+      // option7.value = "6";
+      // option7.textContent = "6";
+      // select.appendChild(option7);
+
+      // var option8 = document.createElement("option");
+      // option8.value = "7";
+      // option8.textContent = "7";
+      // select.appendChild(option8);
+
+      // var option9 = document.createElement("option");
+      // option9.value = "8";
+      // option9.textContent = "8";
+      // select.appendChild(option9);
+
+      // var option10 = document.createElement("option");
+      // option10.value = "9";
+      // option10.textContent = "9";
+      // select.appendChild(option10);
+
+      // var option11 = document.createElement("option");
+      // option11.value = "10";
+      // option11.textContent = "10";
+      // select.appendChild(option11);
+
+      // Create a button to remove the skill from the list
+      var button = document.createElement("button");
+      button.textContent = "Remove";
+      button.classList.add("btn", "btn-danger");
+      // Add an event listener to the remove button
+      button.addEventListener("click", function() {
+        // Remove the list item from the skill list
+        skillList.removeChild(li);
+      });
+
+      // Append the skill, proficiency level, and remove button to the list item
+      li.appendChild(p);
+      li.appendChild(p1);
+      //li.appendChild(select);
+      li.appendChild(button);
+      // Append the list item to the skill list
+      skillList.appendChild(li);
+      // Clear the new skill text field and the new skill level select menu
+      newSkill.value = "";
+      newSkillLevel.value = "beginner";
+    }
+  </script>
+</body>
+</html>

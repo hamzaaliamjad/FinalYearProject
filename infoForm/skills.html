@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Use a Google font for the heading */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+      
+        /* Some basic styling for the form */
+        form {
+          width: 50%;
+          margin: 0 auto;
+          text-align: center;
+          font-family: 'Roboto', sans-serif;
+        }
+      
+        /* Style the add and remove buttons */
+        button {
+          background-color: #4caf50; /* Green */
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+      
+        /* Style the skill list */
+        ul {
+          list-style-type: none;
+          padding: 0;
+        }
+      
+        /* Style the list items */
+        li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+      
+        /* Style the skill text */
+        li p {
+          margin: 0;
+          font-size: 16px;
+          flex-grow: 1;
+        }
+      
+        /* Style the remove button */
+        li button {
+          background-color: #f44336; /* Red */
+          color: white;
+          padding: 5px 10px;
+          font-size: 14px;
+          border-radius: 4px;
+        }
+      
+        /* Style the new skill text field */
+        input[type=text] {
+          width: 60%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          box-sizing: border-box;
+          border: 2px solid #ccc;
+          border-radius: 4px;
+          font-size: 16px;
+        }
+      </style>
+      
+</head>
+<body>
+  <form>
+    <h1>Skills</h1>
+    <!-- Add a text field for the user to enter a new skill -->
+    <div class="form-group" >
+          <label for="semester">Semester</label>
+          <select class="form-control" id="newSkill">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+          </select>
+        </div>
+    <!-- Add a button to add the new skill to the list -->
+    <button type="button" onclick="addSkill()">Add Skill</button>
+    <!-- Add a list to display the skills -->
+    <ul id="skillList"></ul>
+  </form>
+
+  <script>
+    // Get a reference to the skill list and the new skill text field
+    var skillList = document.getElementById("skillList");
+    var newSkill = document.getElementById("newSkill");
+
+    // Define a function to add a new skill to the list
+    function addSkill() {
+      // Get the value of the new skill text field
+      var skill = newSkill.value;
+      // Make sure the skill is not empty
+      if (skill.trim() === "") {
+        alert("Please enter a valid skill");
+        return;
+      }
+      // Create a new list item to hold the skill
+      var li = document.createElement("li");
+      // Add the skill as text to the list item
+      li.appendChild(document.createTextNode(skill));
+      // Add a remove button to the list item
+      var removeButton = document.createElement("button");
+      removeButton.innerHTML = "Remove";
+      // Add an event listener to the remove button to remove the list item when clicked
+      removeButton.addEventListener("click", function() {
+        skillList.removeChild(li);
+      });
+      li.appendChild(removeButton);
+      // Add the list item to the skill list
+      skillList.appendChild(li);
+      // Clear the new skill text field
+      newSkill.value = "";
+    }
+  </script>
+</body>
+</html>
