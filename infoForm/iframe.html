@@ -7,16 +7,68 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- The iframe element will contain the HTML page that you want to use as the background -->
-    <iframe src="cityLife.html" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:-1;">
-    </iframe>
+  <style>
+    .skill {
+  display: flex;
+  align-items: center;
+}
 
-    <!-- The rest of your HTML content goes here. Set the z-index to a positive value to ensure that it is above the iframe element. -->
-    <div style="z-index: 1;">
-      <h1>Welcome to My Page</h1>
-      <p>This is the main content of the page.</p>
+.skill input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.delete-skill-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+  </style>
+  <form>
+    <div id="skills">
+      <!-- This div element will contain the list of skills -->
     </div>
+    <button type="button" id="add-skill-button">Add Skill</button>
+  </form>
+  
+  <!-- This template will be used to create new skill elements -->
+  <template id="skill-template">
+    <div class="skill">
+      <input type="text" placeholder="Skill name">
+      <input type="text" placeholder="Skill level (1-5)">
+      <button type="button" class="delete-skill-button">Delete</button>
+    </div>
+  </template>
+  
 
 
 </body>
+<script>
+  const skillsContainer = document.getElementById("skills");
+const addSkillButton = document.getElementById("add-skill-button");
+const skillTemplate = document.getElementById("skill-template");
+
+// Add a new skill when the "Add Skill" button is clicked
+addSkillButton.addEventListener("click", () => {
+  // Clone the skill template
+  const newSkill = skillTemplate.content.cloneNode(true);
+
+  // Find the delete button in the new skill element
+  const deleteButton = newSkill.querySelector(".delete-skill-button");
+
+  // Add a click event listener to the delete button
+  deleteButton.addEventListener("click", () => {
+    // Remove the skill element when the delete button is clicked
+    newSkill.remove();
+  });
+
+  // Append the new skill element to the skills container
+  skillsContainer.appendChild(newSkill);
+});
+
+</script>
 </html>
+

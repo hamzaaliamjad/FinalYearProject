@@ -24,22 +24,23 @@
         }
         :root{
             
-            --background--button:linear-gradient(135deg, #8c9195, #9b59b6);
-	        --background--screen:url(pencils.jpg);
-            --background--form:#EBF1F7;
+            --background--button:linear-gradient(135deg, #ec6c0a, #f5421a);
+            --background--button1:linear-gradient(135deg, #1c8ae3, #52eecc);
+	        --background--screen:url(pexels-scott-webb-1022923.jpg);
+            --background--form:transparent;
         }
         
 
     </style>
-    <div class="container-fluid" style=" z-index: 1;background:var(--background--screen); background-size: contain;">
+    <div class="container-fluid" style="background:var(--background--screen); background-size: cover;">
         <h1 class="text-center mb-lg-1" style="font-family: 'Amita'; font-size: 50px; color: #5d41e8;">Viaduct</h1>
-        <h3 class="text-center mb-2">Data Collection</h3>
-        <div class="d-flex min-vh-100 justify-content-center" style="background:var(--background--screen); background-size: contain;">       
+        <h3 class="text-center mb-2">Data Collection Drive</h3>
+        <div class="d-flex min-vh-100 justify-content-center" style="background-color: transparent; border: none;">       
         <div class="card justify-content-center" style="background-color: transparent; border: none;">
-            <div class="container">
+            <div class="container" style="background-color: transparent;">
                 <div class="card-body" style="background:var(--background--form);">
-                    <form id="form" action="/signupHandle" method="post">
-                    <div class="form-group" ><!--action="/signupHandle"  method="post"-->
+                    <form id="form" action="/signupHandle" method="post" style="background-color: transparent;">
+                    <div class="form-group"><!--action="/signupHandle"  method="post"-->
                         <div class="row">
                             <div class="col-lg-5">
                                 <label for="name" style="margin-top:1rem;">Full Name</label>
@@ -151,7 +152,34 @@
                                 </div>
                             </div>
                         </div>
-    
+                        <br>
+                        <ul id="skillList" class="list-group font-weight-bold text-bold"></ul>
+                        <br>
+                        <div class="form-group d-flex align-items-center">
+                            <!-- Add a text field for the user to enter a new skill -->
+                            <input type="text" class="form-control mr-2" id="newSkill" placeholder="Enter a new skill">
+                            <!-- Add a select menu for the proficiency level of the new skill -->
+                            <select class="form-control mr-2" id="newSkillLevel">
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                          
+                            </select>
+                            </div>                          
+                          <br>
+                          <div class="row">
+                          <button class="btn btn-block" type="button" id="add-skill-button" onclick=addSkill() style="background:var(--background--button1);">Add Skill</button>     
+                        </div>                   
+                        
+              </div>
                         <br>
                         <div class="row">
                             <button class="btn btn-block" type="submit" style="background:var(--background--button);">Submit</button>
@@ -166,6 +194,57 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-
+    <script>
+        
+        // Get a reference to the skill list, the new skill text field, and the new skill level select menu
+        var skillList = document.getElementById("skillList");
+        var newSkill = document.getElementById("newSkill");
+        var newSkillLevel = document.getElementById("newSkillLevel");
+    
+        // Define a function to add a new skill to the list
+        function addSkill() {
+          // Get the value of the new skill text field and the new skill level select menu
+          var skill = newSkill.value;
+          var skillLevel = newSkillLevel.value;
+          // Make sure the skill and skill level are not empty
+          if (skill.trim() === "" || skillLevel.trim() === "") {
+            return;
+          }
+    
+          // Create a new list item to hold the skill and proficiency level
+          var li = document.createElement("li");
+          li.classList.add("d-flex", "justify-content-between","font-weight-bold");
+          // Create a paragraph element to hold the skill
+          var p = document.createElement("label");
+          p.textContent = skill;
+          p.classList.add("font-weight-bold");  
+          p.style.cssText = "font-weight: bold; color: black;";
+          
+          var p1= document.createElement("label");
+          p1.textContent = skillLevel;
+          p1.classList.add("font-weight-bold");
+          p1.style.cssText = "font-weight: bold; color: black;";
+          // Create a button to remove the skill from the list
+          var button = document.createElement("button");
+          button.textContent = "Remove";
+          button.classList.add("btn", "btn-danger","btn-sm");
+          // Add an event listener to the remove button
+          button.addEventListener("click", function() {
+            // Remove the list item from the skill list
+            skillList.removeChild(li);
+          });
+    
+          // Append the skill, proficiency level, and remove button to the list item
+          li.appendChild(p);
+          li.appendChild(p1);
+          //li.appendChild(select);
+          li.appendChild(button);
+          // Append the list item to the skill list
+          skillList.appendChild(li);
+          // Clear the new skill text field and the new skill level select menu
+          newSkill.value = "";
+          newSkillLevel.value = "0";
+        }
+      </script> 
 </body>
 </html>
