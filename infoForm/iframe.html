@@ -7,67 +7,45 @@
     <title>Document</title>
 </head>
 <body>
-  <style>
-    .skill {
-  display: flex;
-  align-items: center;
-}
-
-.skill input {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.delete-skill-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-  </style>
   <form>
-    <div id="skills">
-      <!-- This div element will contain the list of skills -->
-    </div>
-    <button type="button" id="add-skill-button">Add Skill</button>
+    
+    <div class="row">
+
+      <div class="col-lg-3">
+          <!-- Add a text field for the user to enter a new skill -->
+          <label for="diff" style="margin-top:1rem;">Project Title</label>
+          <input type="text" class="form-control" id="newProject" placeholder="Enter Project Name">
+          <!-- Add a select menu for the proficiency level of the new skill -->
+          </div>
+
+
+          <div class="col-lg-1"></div>
+          <div class="col-lg-3">
+            <!-- Add a text field for the user to enter a new skill -->
+            <label for="diff" style="margin-top:1rem;">Technology used</label>
+            <input type="text" class="form-control" id="newProject" placeholder="Enter Comma Separated">
+            <!-- Add a select menu for the proficiency level of the new skill -->
+            </div>
+
+            <div class="col-lg-1"></div>
+
+          <div class="col-lg-3">
+            <label for="diff" style="margin-top:1rem;">Project Difficulty</label>
+            <input type="number" min="0" max="10" class="form-control" id="newProject" name="diff" placeholder="Difficulty out of 10" required>
+          </div>
+
+
+
+          </div>
+
+
+
   </form>
   
-  <!-- This template will be used to create new skill elements -->
-  <template id="skill-template">
-    <div class="skill">
-      <input type="text" placeholder="Skill name">
-      <input type="text" placeholder="Skill level (1-5)">
-      <button type="button" class="delete-skill-button">Delete</button>
-    </div>
-  </template>
   
-
 
 </body>
 <script>
-  const skillsContainer = document.getElementById("skills");
-const addSkillButton = document.getElementById("add-skill-button");
-const skillTemplate = document.getElementById("skill-template");
-
-// Add a new skill when the "Add Skill" button is clicked
-addSkillButton.addEventListener("click", () => {
-  // Clone the skill template
-  const newSkill = skillTemplate.content.cloneNode(true);
-
-  // Find the delete button in the new skill element
-  const deleteButton = newSkill.querySelector(".delete-skill-button");
-
-  // Add a click event listener to the delete button
-  deleteButton.addEventListener("click", () => {
-    // Remove the skill element when the delete button is clicked
-    newSkill.remove();
-  });
-
-  // Append the new skill element to the skills container
-  skillsContainer.appendChild(newSkill);
-});
 
 </script>
 </html>
